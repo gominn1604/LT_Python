@@ -58,6 +58,13 @@ class DanhSachPS:
                 result = ps
         return result
 
+    def timPSDuongNhoNhat_2(self):
+        min  = PhanSo(1_000_000_000)
+        for ps in self.dsps:
+            if ps > 0 and ps < min:
+                min = ps
+        return min
+
     def laPhanSoGiongNhau(self, ps1: PhanSo, ps2: PhanSo):
         return (ps1.tuSo == ps2.tuSo and ps1.mauSo == ps2.mauSo)
         
@@ -101,12 +108,13 @@ ps.tuSo = 1
 # print(f"Tong cac phan so am trong mang la: {dsps.tongPhanSoAm()}")
 # print(f"Cac vi tri xuat hien cua phan so {ps} trong mang la: {dsps.timVTPhanSo(ps)}")
 # print(f"So phan so am trong mang la: {dsps.demSoPSAmTrongMang()}")
-# print(dsps.timPSDuongNhoNhat())
-
+print("Phan so duong nho nhat la: ")
+print(dsps.timPSDuongNhoNhat())
+print(dsps.timPSDuongNhoNhat_2())
 # dsps.xoaPSXTrongMang(ps)
 # print(f"Danh sach mang phan so sau khi xoa phan so {ps}")
 # dsps.xuat()
 
-dsps.xoaPSCoTuLaX(2)
-print(f"Danh sach mang phan so sau khi xoa la: ")
-dsps.xuat()
+# dsps.xoaPSCoTuLaX(2)
+# print(f"Danh sach mang phan so sau khi xoa la: ")
+# dsps.xuat()

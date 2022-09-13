@@ -89,15 +89,44 @@ class PhanSo:
     def __lt__(self, other):
         if not isinstance(other, PhanSo):
             other = PhanSo(other)
-        
+        return self.tuSo * other.mauSo < self.mauSo * other.tuSo
+
+    def __gt__(self, other):
+        if not isinstance(other, PhanSo):
+            other = PhanSo(other)
+        return self.tuSo * other.mauSo > self.mauSo * other.tuSo
+
+    def __le__(self, other):
+        if not isinstance(other, PhanSo):
+            other = PhanSo(other)
+        return self.tuSo * other.mauSo <= self.mauSo * other.tuSo
+
+    def __ge__(self, other):
+        if not isinstance(other, PhanSo):
+            other = PhanSo(other)
+        return self.tuSo * other.mauSo >= self.mauSo * other.tuSo
+
+    def __eq__(self, other):
+        if not isinstance(other, PhanSo):
+            other = PhanSo(other)
+        return self.tuSo * other.mauSo == self.mauSo * other.tuSo
+
+    def __ne__(self, other):
+        if not isinstance(other, PhanSo):
+            other = PhanSo(other)
+        return self.tuSo * other.mauSo != self.mauSo * other.tuSo
+
+
 
 ps1 = PhanSo()
 ps2 = PhanSo(-2,3)
+ps3 = PhanSo(1,1.5)
 
 ps1.tuSo = 1
 ps1.mauSo = 2
 
 print(f"{ps1} + {ps2} = {ps1 + ps2}")
+
 
 
 
