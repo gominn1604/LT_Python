@@ -75,6 +75,13 @@ class DanhSachPS:
                 vt.append(i)
         return vt
 
+    def timVTPhanSo_2(self, ps: PhanSo):
+        vt = []
+        for i in range(len(self.dsps)):
+            if (self.dsps[i] == ps):
+                vt.append(i)
+        return vt
+
     def mangPhanSoAm(self):
         return [ps for ps in self.dsps if not self.laPhanSoDuong(ps)]
 
@@ -82,9 +89,15 @@ class DanhSachPS:
         sum = PhanSo()
         sum.tuSo = 0
         sum.mauSo = 1
-        print(self.mangPhanSoAm()[0])
         for i in range(len(self.mangPhanSoAm())):
             sum = sum.__add__(self.mangPhanSoAm()[i])
+        return sum
+
+    def tongPhanSoAm_2(self):
+        sum = PhanSo(0, 1)
+        for ps in self.dsps:
+            if ps < 0:
+                print(ps)
         return sum
 
     def xoaPSXTrongMang(self, phanso: PhanSo()):
@@ -101,12 +114,14 @@ dsps = DanhSachPS()
 
 dsps.docTuFile()
 dsps.xuat()
-ps = PhanSo()
-ps.tuSo = 1
+ps = PhanSo(1,2)
 
 
-# print(f"Tong cac phan so am trong mang la: {dsps.tongPhanSoAm()}")
-# print(f"Cac vi tri xuat hien cua phan so {ps} trong mang la: {dsps.timVTPhanSo(ps)}")
+print(f"Tong cac phan so am trong mang la: {dsps.tongPhanSoAm()}")
+print(f"Tong cac phan so am trong mang la: {dsps.tongPhanSoAm_2()}")
+print(f"Cac vi tri xuat hien cua phan so trong mang la: {dsps.timVTPhanSo(ps)}")
+print(f"Cac vi tri xuat hien cua phan so trong mang la: {dsps.timVTPhanSo_2(ps)}")
+
 # print(f"So phan so am trong mang la: {dsps.demSoPSAmTrongMang()}")
 print("Phan so duong nho nhat la: ")
 print(dsps.timPSDuongNhoNhat())

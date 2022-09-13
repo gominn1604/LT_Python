@@ -89,27 +89,64 @@ class PhanSo:
     def __lt__(self, other):
         if not isinstance(other, PhanSo):
             other = PhanSo(other)
-        return self.tuSo * other.mauSo < self.mauSo * other.tuSo
+        if (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo < 0):
+            return False
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo > 0):
+            return True
+        elif (self.tuSo / self.mauSo >= 0 and other.tuSo / other.mauSo >= 0):
+            return abs(self.tuSo) * abs(other.mauSo) < abs(self.mauSo) * abs(other.tuSo)
+        elif (self.tuSo / self.mauSo <= 0 and other.tuSo / other.mauSo <= 0):
+            return self.tuSo * other.mauSo < other.tuSo * self.mauSo
 
     def __gt__(self, other):
         if not isinstance(other, PhanSo):
             other = PhanSo(other)
-        return self.tuSo * other.mauSo > self.mauSo * other.tuSo
+        if (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo < 0):
+            return True
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo > 0):
+            return False
+        elif (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo > 0):
+            return abs(self.tuSo) * abs(other.mauSo) > abs(self.mauSo) * abs(other.tuSo)
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo < 0):
+            return self.tuSo * other.mauSo > other.tuSo * self.mauSo
+
 
     def __le__(self, other):
         if not isinstance(other, PhanSo):
             other = PhanSo(other)
-        return self.tuSo * other.mauSo <= self.mauSo * other.tuSo
+        if (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo < 0):
+            return False
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo > 0):
+            return True
+        elif (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo > 0):
+            return abs(self.tuSo) * abs(other.mauSo) <= abs(self.mauSo) * abs(other.tuSo)
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo < 0):
+            return self.tuSo * other.mauSo <= other.tuSo * self.mauSo
+
 
     def __ge__(self, other):
         if not isinstance(other, PhanSo):
             other = PhanSo(other)
-        return self.tuSo * other.mauSo >= self.mauSo * other.tuSo
+        if (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo < 0):
+            return True
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo > 0):
+            return False
+        elif (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo > 0):
+            return abs(self.tuSo) * abs(other.mauSo) >= abs(self.mauSo) * abs(other.tuSo)
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo < 0):
+            return self.tuSo * other.mauSo >= other.tuSo * self.mauSo
 
     def __eq__(self, other):
         if not isinstance(other, PhanSo):
             other = PhanSo(other)
-        return self.tuSo * other.mauSo == self.mauSo * other.tuSo
+        if (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo < 0):
+            return False
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo > 0):
+            return False
+        elif (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo > 0):
+            return abs(self.tuSo) * abs(other.mauSo) == abs(self.mauSo) * abs(other.tuSo)
+        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo < 0):
+            return self.tuSo * other.mauSo == other.tuSo * self.mauSo
 
     def __ne__(self, other):
         if not isinstance(other, PhanSo):
@@ -119,8 +156,13 @@ class PhanSo:
 
 
 ps1 = PhanSo()
-ps2 = PhanSo(-2,3)
-ps3 = PhanSo(1,1.5)
+ps2 = PhanSo(-2,-3)
+ps3 = PhanSo(-1,-3)
+
+if (ps2 > 0):
+    print('ps1 lon hon')
+else:
+    print('ps2 lon hon')
 
 ps1.tuSo = 1
 ps1.mauSo = 2
