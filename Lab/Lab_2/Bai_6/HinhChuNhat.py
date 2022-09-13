@@ -18,4 +18,4 @@ class HinhChuNhat(HinhHoc):
 
     @property
     def DienTich(self):
-        return self.chieuDai * self.chieuRong
+        return float(self.chieuDai) * float(self.chieuRong)

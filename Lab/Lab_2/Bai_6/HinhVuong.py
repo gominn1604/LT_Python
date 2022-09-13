@@ -12,5 +12,7 @@ class HinhVuong(HinhHoc):
     def __str__(self) -> str:
         return super().__str__() + f"vuong co canh: {self.canhHV}"
 
+
+    @property
     def DienTich(self):
-        return pow(self.canhHV, 2)
+        return pow(float(self.canhHV), 2)

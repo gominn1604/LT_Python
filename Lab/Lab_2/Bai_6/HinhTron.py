@@ -14,4 +14,4 @@ class HinhTron(HinhHoc):
 
     @property
     def DienTich(self):
-        return pi * pow(int(self.banKinh), 2)
+        return pi * float(pow(int(self.banKinh), 2))

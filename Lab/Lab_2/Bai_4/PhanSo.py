@@ -2,9 +2,9 @@ from cmath import phase
 
 
 class PhanSo:
-    def __init__(self) -> None:
-        self.__tu = 0
-        self.__mau = 1
+    def __init__(self, tu = 0, mau = 1) -> None:
+        self.__tu = tu
+        self.__mau = mau
 
     @property
     def tuSo(self):
@@ -86,18 +86,18 @@ class PhanSo:
         mauA = mauA * mauB
         return PhanSo(tuA, mauA).rutGon()
 
+    def __lt__(self, other):
+        if not isinstance(other, PhanSo):
+            other = PhanSo(other)
+        
+
 ps1 = PhanSo()
-ps2 = PhanSo()
+ps2 = PhanSo(-2,3)
 
 ps1.tuSo = 1
-ps2.tuSo = -2
-ps2.mauSo = 3
 ps1.mauSo = 2
 
-# print(f"{ps1} + {ps2} = {ps1.__add__(ps2)}")
-# # print(f"{a} - {b} = {a.__sub__(b)}")
-# # print(f"{a} * {b} = {a.__mul__(b)}")
-# # print(f"{a} / {b} = {a.__truediv__(b)}")
+print(f"{ps1} + {ps2} = {ps1 + ps2}")
 
 
 

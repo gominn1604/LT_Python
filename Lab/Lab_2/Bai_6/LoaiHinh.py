@@ -1,7 +1,9 @@
 from enum import Enum
 
 class LoaiHinh(Enum):
-    TatCa = "TatCa"
-    HinhTron = "HinhTron"
-    HinhVuong = "HinhVuong"
-    HinhChuNhat = "HinhChuNhat"
+    TatCa = 0
+    HinhVuong = 1
+    HinhChuNhat = 2
+    HinhTron = 3
+    
+    
