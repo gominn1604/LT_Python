@@ -96,6 +96,12 @@ class PhanSo:
         elif (self.tuSo / self.mauSo >= 0 and other.tuSo / other.mauSo >= 0):
             return abs(self.tuSo) * abs(other.mauSo) < abs(self.mauSo) * abs(other.tuSo)
         elif (self.tuSo / self.mauSo <= 0 and other.tuSo / other.mauSo <= 0):
+            if (self.mauSo<0):
+                self.tuSo = -self.tuSo
+                self.mauSo = -self.mauSo
+            elif (other.mauSo < 0):
+                other.tuSo = -other.tuSo
+                other.mauSo = -other.mauSo
             return self.tuSo * other.mauSo < other.tuSo * self.mauSo
 
     def __gt__(self, other):
@@ -105,9 +111,15 @@ class PhanSo:
             return True
         elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo > 0):
             return False
-        elif (self.tuSo / self.mauSo > 0 and other.tuSo / other.mauSo > 0):
+        elif (self.tuSo / self.mauSo >= 0 and other.tuSo / other.mauSo >= 0):
             return abs(self.tuSo) * abs(other.mauSo) > abs(self.mauSo) * abs(other.tuSo)
-        elif (self.tuSo / self.mauSo < 0 and other.tuSo / other.mauSo < 0):
+        elif (self.tuSo / self.mauSo <= 0 and other.tuSo / other.mauSo <= 0):
+            if (self.mauSo<0):
+                self.tuSo = -self.tuSo
+                self.mauSo = -self.mauSo
+            elif (other.mauSo < 0):
+                other.tuSo = -other.tuSo
+                other.mauSo = -other.mauSo
             return self.tuSo * other.mauSo > other.tuSo * self.mauSo
 
 
@@ -154,20 +166,29 @@ class PhanSo:
         return self.tuSo * other.mauSo != self.mauSo * other.tuSo
 
 
+    
+            
 
 ps1 = PhanSo()
-ps2 = PhanSo(-2,-3)
-ps3 = PhanSo(-1,-3)
+ps2 = PhanSo(2,-6)
+ps3 = PhanSo(1,-3)
 
 if (ps2 > 0):
-    print('ps1 lon hon')
+    print('ps2 lon hon 0')
 else:
-    print('ps2 lon hon')
+    print('ps2 nho hon 0')
+
+if (ps2 > ps3):
+    print('ps2 lon hon ps3')
+elif (ps2 < ps3):
+    print('ps2 nho hon ps3')
+elif (ps2 == ps3):
+    print("ps2 = ps3")
 
 ps1.tuSo = 1
 ps1.mauSo = 2
 
-print(f"{ps1} + {ps2} = {ps1 + ps2}")
+#print(f"{ps1} + {ps2} = {ps1 + ps2}")
 
 
 

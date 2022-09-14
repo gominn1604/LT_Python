@@ -1,8 +1,4 @@
 
-from ast import For
-from cmath import phase
-from re import S
-from tkinter import Pack
 from PhanSo import PhanSo
 
 
@@ -27,9 +23,7 @@ class DanhSachPS:
         f = open(filename, "r")
         for x in f:
             s = x.split(",")
-            ps = PhanSo()
-            ps.tuSo = int(s[0])
-            ps.mauSo = int(s[1])
+            ps = PhanSo(int(s[0]), int(s[1]))
             dsps.themPS(ps)
 
     def demSoPSAmTrongMang(self):
@@ -98,12 +92,18 @@ class DanhSachPS:
         for ps in self.dsps:
             if ps < 0:
                 print(ps)
+                sum+=ps
         return sum
 
     def xoaPSXTrongMang(self, phanso: PhanSo()):
         for i in range(len(self.dsps)):
             if self.timVTPhanSo(phanso):
                 del self.dsps[i]
+
+    def xoaPSXTrongMang_2(self, phanso: PhanSo()):
+        for ps in self.dsps:
+            if ps == phanso:
+                self.dsps.remove(ps)
 
     def xoaPSCoTuLaX(self, tuso: int):
         for ps in self.dsps:
@@ -117,18 +117,19 @@ dsps.xuat()
 ps = PhanSo(1,2)
 
 
-print(f"Tong cac phan so am trong mang la: {dsps.tongPhanSoAm()}")
-print(f"Tong cac phan so am trong mang la: {dsps.tongPhanSoAm_2()}")
-print(f"Cac vi tri xuat hien cua phan so trong mang la: {dsps.timVTPhanSo(ps)}")
-print(f"Cac vi tri xuat hien cua phan so trong mang la: {dsps.timVTPhanSo_2(ps)}")
+# print(f"Tong cac phan so am trong mang la: {dsps.tongPhanSoAm()}")
+# print(f"Tong cac phan so am trong mang la: {dsps.tongPhanSoAm_2()}")
+# print(f"Cac vi tri xuat hien cua phan so trong mang la: {dsps.timVTPhanSo(ps)}")
+# print(f"Cac vi tri xuat hien cua phan so trong mang la: {dsps.timVTPhanSo_2(ps)}")
+# print("Phan so duong nho nhat la: ")
+# print(dsps.timPSDuongNhoNhat())
+# print(dsps.timPSDuongNhoNhat_2())
 
-# print(f"So phan so am trong mang la: {dsps.demSoPSAmTrongMang()}")
-print("Phan so duong nho nhat la: ")
-print(dsps.timPSDuongNhoNhat())
-print(dsps.timPSDuongNhoNhat_2())
+
 # dsps.xoaPSXTrongMang(ps)
-# print(f"Danh sach mang phan so sau khi xoa phan so {ps}")
-# dsps.xuat()
+dsps.xoaPSXTrongMang_2(ps)
+print(f"Danh sach mang phan so sau khi xoa phan so {ps}")
+dsps.xuat()
 
 # dsps.xoaPSCoTuLaX(2)
 # print(f"Danh sach mang phan so sau khi xoa la: ")
