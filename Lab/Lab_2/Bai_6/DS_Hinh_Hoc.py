@@ -1,3 +1,4 @@
+import math
 from LoaiHinh import LoaiHinh
 from HinhHoc import HinhHoc
 from HinhVuong import HinhVuong
@@ -84,14 +85,26 @@ class DanhSachHinhHoc:
         print(f"Tong dien tich cac hinh la: {sum}")
 
     def timViTriCuaHinh(self, h: HinhHoc):
+        vt = []
         for i in range(len(self.dshh)):
-            if (isinstance(self.dshh[i], HinhChuNhat)):
-                if self.dshh[i].chieuDai == h.chieuDai and self.dshh[i].chieuRong == h.chieuRong:
-                    return i
-            elif ((isinstance(self.dshh[i], HinhTron) and LoaiHinh.HinhTron.name == HinhTron) or (isinstance(self.dshh[i], HinhVuong)) and LoaiHinh.HinhVuong.name == HinhVuong):
+            if (isinstance(self.dshh[i], HinhTron) and isinstance(h, HinhTron)):
                 if self.dshh[i].canh == h.canh:
-                    return i
-        return -1
+                    vt.append(i)
+            elif (isinstance(self.dshh[i], HinhVuong) and isinstance(h, HinhVuong)):
+                if self.dshh[i].canh == h.canh:
+                    vt.append(i)
+            elif (isinstance(self.dshh[i], HinhChuNhat) and isinstance(h, HinhChuNhat)):
+                if self.dshh[i].chieuDai == h.chieuDai and self.dshh[i].chieuRong == h.chieuRong:
+                    vt.append(i)
+        return vt
+
+    def xoaTaiViTri(self, viTri: int):
+        for i in range(len(self.dshh)):
+            if viTri == i:
+                self.dshh.remove(self.dshh[i])
+
+    def timHinhTheoDTich(self, dt: float):
+        return (hh for hh in self.dshh if math.isclose(hh.DienTich, dt))
 
 dshh = DanhSachHinhHoc()
 dshh.docTuFile("F:\Study\Year4_Semester1\LT_Python\Lab\Lab_2\Bai_6\hinhhoc.txt")
@@ -108,5 +121,8 @@ dshh.timHinhCoDienTichLonNhatTheoLoai(LoaiHinh.HinhTron)
 xuat(dshh.sapXepTheoDienTich())
 dshh.demSoLuongHinh(LoaiHinh.HinhTron)
 dshh.tinhTongDienTich()
-print(dshh.timViTriCuaHinh(HinhVuong(8)))
-
+print(f"Cac vi tri xuat hien cua hinh la: {dshh.timViTriCuaHinh(HinhChuNhat(8,2.5))}")
+dshh.xoaTaiViTri(2)
+dshh.xuat()
+kq2 = dshh.timHinhTheoDTich(9)
+xuat(kq2)
