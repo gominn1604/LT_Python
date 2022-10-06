@@ -1,7 +1,7 @@
 from pickletools import pydict
 import pyodbc
 
-conn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server}; SERVER=.;DATABASE=QLMonAn;UID=sa;PWD=sa;Encrypt=no')
+conn = pyodbc.connect(driver='{SQL Server}',host='WINDOWS-11\SQLEXPRESS', database='QLSinhVien', trusted_connection='yes',encrypt='no')
 cursor = conn.cursor()
 cursor.execute("SELECT @@version")
 conn.close()
